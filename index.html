@@ -1,0 +1,456 @@
+<html>
+<head>
+    <title>TIE-KD Viewer</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .Ours_Both {
+            background-color: blue;
+            color: white;
+        }
+
+        .Ours_L_DPM {
+            background-color: skyblue;
+        }
+
+        .Teacher {
+            background-color: #EEEEEE;
+            color: rgb(128, 128, 128);
+        }
+
+        .Ours_L_depth {
+            background-color: lightcyan;
+        }
+
+        .Res_KD_SSIM {
+            background-color: red;
+            color: white;
+        }
+
+        .Res_KD_MSE {
+            background-color: purple;
+            color: white;
+        }
+
+        .Res_KD_SI {
+            background-color: lightgrey;
+            color: black;
+        }
+
+        .Res_KD_SSIM_SI {
+            background-color: lightcoral;
+        }
+
+        .Res_KD_SSIM_MSE {
+            background-color: thistle;
+        }
+
+        .Result_Others {
+            background-color: #F0F0F0;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+            margin: 2px;
+            vertical-align: top;
+        }
+
+        .overlay-canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            pointer-events: auto;
+        }
+
+        .label {
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 5px 0;
+            box-sizing: border-box;
+        }
+
+        .label:hover {
+            cursor: pointer;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container"></div>
+
+<script>
+    !async function () {
+        const params = new URLSearchParams(location.search);
+        let targets = params.get('targets') || ['ver650_KD_SSIM_bts', 'ver652_res-kd_mobile_mse_bts', 'ver651_res-kd_mobile_SI_bts', 'ver659_KD_SSIM_SIG_bts', 'ver912_res-kd_mobile_SSIM_mse_bts', 'ver926_ours_bts_', 'ver913_ours_mobile_kl_only_bts', 'ver915_ours_mobile_SSIM_only_bts'].join(',');
+        targets = targets.split(/[,.]/gi);
+        let index = parseInt(params.get('index')) || 0;
+        let indexes = params.get('indexes') || '';
+        indexes = indexes.split(/[,.]/gi).filter(e => e).map(e => parseInt(e));
+        if (indexes.length > 0) {
+            if (!indexes.find(e => e === index)) {
+                index = indexes[0];
+            }
+        }
+        let images = [];
+        let cachedImages = {};
+        let user = location.host.split('.').shift();
+        let repo = location.pathname.split('/').filter(p => p).pop();
+        let trees = await fetch(`https://api.github.com/repos/${user}/${repo}/git/trees/gh-pages?recursive=1`).then(r => r.json());
+        let files = trees.tree.filter(node => node.path.startsWith('base_mobile') && node.type === 'blob').map(n => ({name: n.path.split('/').pop()}));
+        const basePath = `/${repo}`;
+
+        function beep() {
+            let snd = new Audio("data:audio/wav;base64,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qJrx4KOQjahZxWbcZgztj2c49nKmkId44S71j0c8eV9yDK6uPRzx5X18eDvjvQ6yKo9ZSS6l//8elePK/Lf//IInrOF/FvDoADYAGBMGb7FtErm5MXMlmPAJQVgWta7Zx2go+8xJ0UiCb8LHHdftWyLJE0QIAIsI+UbXu67dZMjmgDGCGl1H+vpF4NSDckSIkk7Vd+sxEhBQMRU8j/12UIRhzSaUdQ+rQU5kGeFxm+hb1oh6pWWmv3uvmReDl0UnvtapVaIzo1jZbf/pD6ElLqSX+rUmOQNpJFa/r+sa4e/pBlAABoAAAAA3CUgShLdGIxsY7AUABPRrgCABdDuQ5GC7DqPQCgbbJUAoRSUj+NIEig0YfyWUho1VBBBA//uQZB4ABZx5zfMakeAAAAmwAAAAF5F3P0w9GtAAACfAAAAAwLhMDmAYWMgVEG1U0FIGCBgXBXAtfMH10000EEEEEECUBYln03TTTdNBDZopopYvrTTdNa325mImNg3TTPV9q3pmY0xoO6bv3r00y+IDGid/9aaaZTGMuj9mpu9Mpio1dXrr5HERTZSmqU36A3CumzN/9Robv/Xx4v9ijkSRSNLQhAWumap82WRSBUqXStV/YcS+XVLnSS+WLDroqArFkMEsAS+eWmrUzrO0oEmE40RlMZ5+ODIkAyKAGUwZ3mVKmcamcJnMW26MRPgUw6j+LkhyHGVGYjSUUKNpuJUQoOIAyDvEyG8S5yfK6dhZc0Tx1KI/gviKL6qvvFs1+bWtaz58uUNnryq6kt5RzOCkPWlVqVX2a/EEBUdU1KrXLf40GoiiFXK///qpoiDXrOgqDR38JB0bw7SoL+ZB9o1RCkQjQ2CBYZKd/+VJxZRRZlqSkKiws0WFxUyCwsKiMy7hUVFhIaCrNQsKkTIsLivwKKigsj8XYlwt/WKi2N4d//uQRCSAAjURNIHpMZBGYiaQPSYyAAABLAAAAAAAACWAAAAApUF/Mg+0aohSIRobBAsMlO//Kk4soosy1JSFRYWaLC4qZBYWFRGZdwqKiwkNBVmoWFSJkWFxX4FFRQWR+LsS4W/rFRb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU291bmRib3kuZGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAwNGh0dHA6Ly93d3cuc291bmRib3kuZGUAAAAAAAAAACU=");
+            snd.play();
+        }
+
+        function downloadURI(uri, name) {
+            let link = document.createElement("a");
+            link.setAttribute('download', name);
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        }
+
+        function changeIndex(delta) {
+            if (indexes.length > 0) {
+                index = indexes[indexes.findIndex(e => index === e) + delta];
+                if (!index) {
+                    if (delta < 0) {
+                        index = indexes[0];
+                    } else if (delta > 0) {
+                        index = indexes[indexes.length - 1];
+                    }
+                }
+            } else {
+                index = Math.min(files.length - 1, Math.max(0, index + delta));
+            }
+
+            updateUrlIndex();
+            loadImages();
+        }
+
+        function updateUrlIndex() {
+            const currentUrl = new URL(window.location);
+            currentUrl.searchParams.set('index', index);
+            window.history.pushState({}, '', currentUrl);
+        }
+
+        let showingFavorites = false;
+
+        function showFavorites() {
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            let listHtml = '<ul>';
+            for (let url of favorites) {
+                listHtml += `<li><a href="${url}">${url}</a></li>`;
+            }
+            listHtml += '</ul>';
+            let indexes = Array.from(new Set(favorites.map(f => new URLSearchParams(f.split('?').pop()).get('index')))).join('.');
+            listHtml += `<span>indexes=${indexes} (${favorites.length})</span><br>`;
+            let params = new URLSearchParams(location.search);
+            params.set('indexes', indexes);
+            let retrieve = location.origin + location.pathname + '?' + params.toString();
+            listHtml += `<a href="${retrieve}">${retrieve}</a>`;
+
+            document.getElementById('container').innerHTML = listHtml;
+        }
+
+        function toggleFavorites() {
+            if (showingFavorites) {
+                loadImages();
+                showingFavorites = false;
+            } else {
+                showFavorites();
+                showingFavorites = true;
+            }
+        }
+
+        function addToFavorites() {
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            let currentUrl = window.location.href;
+            if (!favorites.includes(currentUrl)) {
+                favorites.push(currentUrl);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+            }
+            beep();
+        }
+
+        function removeFromFavorites() {
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            let currentUrl = window.location.href;
+            favorites = favorites.filter(url => url !== currentUrl);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            beep();
+            setTimeout(beep, 100);
+        }
+
+        function clearAllFavorites() {
+            localStorage.removeItem('favorites');
+            if (showingFavorites) {
+                showFavorites();
+            }
+        }
+
+        function getLabelClass(labelText) {
+            const oursBothPatterns = ["ver919_kitti_depthformer_cal_range_w0.1_beta_4", "ver919_kitti_adabins_cal_range_w0.1_beta_4", "ver926_ours_bts_"];
+            const oursLDpmPatterns = ["ver913_ours_mobile_kl_only_depthformer", "ver913_ours_mobile_kl_only_adabins", "ver913_ours_mobile_kl_only_bts"];
+            const oursLDepthPatterns = ["ver915_ours_mobile_SSIM_only_depthformer", "ver915_ours_mobile_SSIM_only_adabins", "ver915_ours_mobile_SSIM_only_bts"];
+            const resKdSsimPatterns = ["ver650_KD_SSIM_depthformer", "ver650_KD_SSIM", "ver650_KD_SSIM_bts"];
+            const resKdMsePatterns = ["ver652_res-kd_mobile_mse_depthformer", "ver652_res-kd_mobile_mse_adabins", "ver652_res-kd_mobile_mse_bts"];
+            const resKdSiPatterns = ["ver651_res-kd_mobile_SI_depthformer", "ver651_res-kd_mobile_SI_adabins", "ver651_res-kd_mobile_SI_bts"];
+            const resKdSsimSiPatterns = ["ver659_KD_SSIM_SIG_depthformer", "ver659_KD_SSIM_SIG", "ver659_KD_SSIM_SIG_bts"];
+            const resKdSsimMsePatterns = ["ver912_res-kd_mobile_SSIM_mse_depthformer", "ver912_res-kd_mobile_SSIM_mse_adabins", "ver912_res-kd_mobile_SSIM_mse_bts"];
+            const teacherPatterns = ["Teacher_bts", "Teacher_adabins", "Teacher_depthformer"];
+
+            if (oursBothPatterns.some(pattern => labelText.includes(pattern))) return "Ours_Both";
+            if (oursLDpmPatterns.some(pattern => labelText.includes(pattern))) return "Ours_L_DPM";
+            if (oursLDepthPatterns.some(pattern => labelText.includes(pattern))) return "Ours_L_depth";
+            if (resKdSsimPatterns.some(pattern => labelText.includes(pattern))) return "Res_KD_SSIM";
+            if (resKdMsePatterns.some(pattern => labelText.includes(pattern))) return "Res_KD_MSE";
+            if (resKdSiPatterns.some(pattern => labelText.includes(pattern))) return "Res_KD_SI";
+            if (resKdSsimSiPatterns.some(pattern => labelText.includes(pattern))) return "Res_KD_SSIM_SI";
+            if (resKdSsimMsePatterns.some(pattern => labelText.includes(pattern))) return "Res_KD_SSIM_MSE";
+            if (teacherPatterns.some(pattern => labelText.includes(pattern))) return "Teacher";
+            return "Result_Others";
+        }
+
+        function setupCanvas(canvas) {
+            const ctx = canvas.getContext('2d');
+            let isPainting = false;
+            let isErasing = false;
+            let hasDrawing = false;
+
+            canvas.addEventListener('mousedown', (e) => {
+                isPainting = true;
+                ctx.beginPath();
+                ctx.moveTo(e.offsetX, e.offsetY);
+
+                if (e.button === 2) {
+                    isErasing = true;
+                    ctx.globalCompositeOperation = 'destination-out';
+                    ctx.lineWidth = 15;
+                } else if (e.button === 0) {
+                    isErasing = false;
+                    ctx.globalCompositeOperation = 'source-over';
+                    ctx.strokeStyle = 'limegreen';
+                    ctx.lineWidth = 3;
+                } else if (e.button === 1) {
+                    isErasing = false;
+                    ctx.globalCompositeOperation = 'source-over';
+                    ctx.strokeStyle = 'red';
+                    ctx.lineWidth = 3;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                }
+            });
+
+            canvas.addEventListener('mousemove', (e) => {
+                if (isPainting) {
+                    hasDrawing = true;
+                    ctx.lineTo(e.offsetX, e.offsetY);
+                    ctx.stroke();
+                }
+            });
+
+            canvas.addEventListener('mouseup', () => {
+                isPainting = false;
+            });
+
+            canvas.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+            });
+
+            canvas.addEventListener('mouseleave', () => {
+                isPainting = false;
+            });
+            canvas.hasDrawing = () => hasDrawing;
+        }
+
+        async function loadCanvasImage(src) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                img.src = src;
+            });
+        }
+
+        function preloadImage(target, name) {
+            const src = `${basePath}/${target}/${name}`;
+            if (!cachedImages[src]) {
+                const img = new Image();
+                img.src = src;
+                cachedImages[src] = img;
+            }
+        }
+
+        function preloadSurroundingImages() {
+            let prevIndex = index - 1 < 0 ? files.length - 1 : index - 1;
+            let nextIndex = (index + 1) % files.length;
+            if (indexes.length > 0) {
+                prevIndex = indexes[indexes.findIndex(e => index === e) - 1];
+                if (!prevIndex) {
+                    prevIndex = indexes[0];
+                }
+                nextIndex = indexes[indexes.findIndex(e => index === e) + 1];
+                if (!nextIndex) {
+                    nextIndex = indexes[indexes.length - 1];
+                }
+            }
+
+            let prevName = files[prevIndex].name;
+            let nextName = files[nextIndex].name;
+
+            for (let target of targets) {
+                preloadImage(target, prevName);
+                preloadImage(target, nextName);
+            }
+        }
+
+        function loadImages() {
+            document.title = `TIE-KD Viewer (I:${index})`;
+            let name = files[index].name;
+            let container = document.getElementById('container');
+            container.innerHTML = '';
+            images = [];
+
+            for (let target of targets) {
+                let imageContainer = document.createElement('div');
+                imageContainer.classList.add('image-container');
+
+                let label = document.createElement('div');
+                label.classList.add('label');
+                label.textContent = `${target}/${name}`;
+                let labelClass = getLabelClass(target);
+                if (labelClass) {
+                    label.classList.add(labelClass);
+                }
+                label.onclick = function () {
+                    downloadURI(`${basePath}/${target}/${name}`, `[${target}] ${name}`);
+                }
+                imageContainer.appendChild(label);
+
+                let img = cachedImages[`${basePath}/${target}/${name}`] || new Image();
+                img.alt = `${target}/${name}`;
+                img.src = `${basePath}/${target}/${name}`;
+                images.push(img.src);
+                imageContainer.appendChild(img);
+
+                let canvas = document.createElement('canvas');
+                canvas.classList.add('overlay-canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                setupCanvas(canvas);
+                img.onload = () => {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    canvas.style.top = `${label.offsetHeight}px`;
+                };
+
+                imageContainer.appendChild(canvas);
+
+                container.appendChild(imageContainer);
+            }
+
+            preloadSurroundingImages();
+        }
+
+        async function showDiffImages(baseIndex) {
+            changeIndex(0);
+            const baseImage = await loadCanvasImage(images[baseIndex]);
+            for (let i = 0; i < images.length; i++) {
+                if (i !== baseIndex) {
+                    const compareImage = await loadCanvasImage(images[i]);
+                    displayDiff(baseImage, compareImage, i);
+                }
+            }
+        }
+
+        function displayDiff(baseImage, compareImage, index) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            canvas.width = baseImage.width;
+            canvas.height = baseImage.height;
+
+            context.drawImage(baseImage, 0, 0);
+            const baseData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(compareImage, 0, 0);
+            const compareData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+            const diffData = context.createImageData(canvas.width, canvas.height);
+
+            for (let i = 0; i < diffData.data.length; i += 4) {
+                diffData.data[i] = Math.abs(baseData.data[i] - compareData.data[i]); // R
+                diffData.data[i + 1] = Math.abs(baseData.data[i + 1] - compareData.data[i + 1]); // G
+                diffData.data[i + 2] = Math.abs(baseData.data[i + 2] - compareData.data[i + 2]); // B
+                diffData.data[i + 3] = 255;
+            }
+
+            context.putImageData(diffData, 0, 0);
+
+            const dataUrl = canvas.toDataURL();
+
+            const container = document.getElementsByClassName('image-container')[index];
+            const img = container.getElementsByTagName('img')[0];
+            img.src = dataUrl;
+        }
+
+        function initDiffListener() {
+            let diffMode = false;
+            let diffIndex = -1;
+            document.addEventListener('keydown', async function (event) {
+                if (event.key === 'ArrowLeft') {
+                    diffIndex = -1;
+                    changeIndex(-1);
+                } else if (event.key === 'ArrowRight') {
+                    diffIndex = -1;
+                    changeIndex(1);
+                } else if (event.key === 's') {
+                    addToFavorites();
+                } else if (event.key === 'l') {
+                    toggleFavorites();
+                } else if (event.key === 'd') {
+                    removeFromFavorites();
+                } else if (event.key === 'F3') {
+                    beep();
+                    event.preventDefault();
+                    clearAllFavorites();
+                } else if (event.key >= '1' && event.key <= '9') {
+                    const pressedIndex = parseInt(event.key) - 1;
+                    if (diffIndex === pressedIndex) {
+                        diffMode = false;
+                        diffIndex = -1;
+                        changeIndex(0);
+                    } else {
+                        diffMode = true;
+                        diffIndex = pressedIndex;
+                        await showDiffImages(diffIndex);
+                    }
+                }
+            });
+        }
+
+        initDiffListener();
+        loadImages();
+    }();
+</script>
+</body>
+</html>
