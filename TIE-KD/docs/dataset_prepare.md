@@ -32,6 +32,12 @@ TIE-KD
 │   │   │   ├── ...
 │   │   │   ├── 0000000499.txt
 │   │   ├── split_file.txt
+│   │   ├── gt_kd_adabins
+│   │   ├── gt_kd_adabins_val
+│   │   ├── gt_kd_bts
+│   │   ├── gt_kd_bts_val
+│   │   ├── gt_kd_depthformer
+│   │   ├── gt_kd_depthformer_val
 ```
 
 ### **KITTI**
@@ -44,3 +50,9 @@ Finally, copy split files (whose names are started with *kitti*) in splits folde
 
 Some methods may use the camera intrinsic parameters (*i.e.,* BTS), you need to download the [benchmark_cam](https://drive.google.com/file/d/1ktSDTUx9dDViBKoAeqTERTay1813xfUK/view?usp=sharing) consisting of camera intrinsic parameters of the benchmark test set.
 
+### **Teacher inference datasets**
+
+```shell
+python tools/test.py ${TEACHER CONFIG_FILE} ${TEACHER CHECKPOINT_FILE} --show-dir ${SAVE PATH}
+
+```
