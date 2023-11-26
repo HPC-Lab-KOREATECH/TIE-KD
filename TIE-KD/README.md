@@ -4,11 +4,11 @@ we introduce a novel Teacher-Independent Explainable Knowledge Distillation (TIE
 
 ## Installation
 
-Please refer to [get_started.md](docs/get_started.md#installation) for installation and [dataset_prepare.md](docs/dataset_prepare.md#prepare-datasets) for dataset preparation.
+Please refer to [get_started.md](docs/get_started.md#installation) [(html)](docs/get_started.html) for installation and [dataset_prepare.md](docs/dataset_prepare.md#prepare-datasets) [(html)](docs/dataset_prepare.html) for dataset preparation.
 
 ## Get Started
 
-We provide [train.md](docs/train.md) and [inference.md](docs/inference.md) for the usage of this toolbox. 
+We provide [train.md](docs/train.md) [(html)](docs/train.html) and [inference.md](docs/inference.md) [(html)](docs/inference.html) for the usage of this toolbox. 
 
 <!-- In the future, there will be tutorials for [customizing dataset (TODO)](docs/tutorials/customize_datasets.md), [designing data pipeline (TODO)](docs/tutorials/data_pipeline.md), [customizing modules (TODO)](docs/tutorials/customize_models.md), and [customizing runtime (TODO)](docs/tutorials/customize_runtime.md). We also provide [training tricks (TODO)](docs/tutorials/training_tricks.md). -->
 
