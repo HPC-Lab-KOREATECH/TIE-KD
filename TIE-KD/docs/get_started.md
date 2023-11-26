@@ -41,7 +41,8 @@ pip install future tensorboard
 ### **If you have a different environment**,
 You only need to install PyTorch and MMCV (1.3.1<= version <=1.4.0) correspondingly, and then build our codebase:
 ```
-cd TIE-KD
+git clone https://github.com/zhyever/Monocular-Depth-Estimation-Toolbox.git
+cd Monocular-Depth-Estimation-Toolbox
 pip install -e .
 ```
 
