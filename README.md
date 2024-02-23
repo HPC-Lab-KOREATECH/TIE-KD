@@ -2,6 +2,9 @@
 ## Introduction
 we introduce a novel Teacher-Independent Explainable Knowledge Distillation (TIE-KD) framework that streamlines the knowledge transfer from complex teacher models to compact student networks, eliminating the need for architectural similarity
 
+## Related paper
+[TIE-KD: Teacher-Independent and Explainable Knowledge Distillation for Monocular Depth Estimation](https://arxiv.org/abs/2402.14340)
+
 ## Installation
 
 Please refer to [get_started.md](docs/get_started.md#installation) [(html)](docs/get_started.html) for installation and [dataset_prepare.md](docs/dataset_prepare.md#prepare-datasets) [(html)](docs/dataset_prepare.html) for dataset preparation.
