@@ -95,10 +95,10 @@
     !async function () {
         const params = new URLSearchParams(location.search);
         let targets = params.get('targets') || ['ver650_KD_SSIM_bts', 'ver652_res-kd_mobile_mse_bts', 'ver651_res-kd_mobile_SI_bts', 'ver659_KD_SSIM_SIG_bts', 'ver912_res-kd_mobile_SSIM_mse_bts', 'ver926_ours_bts_', 'ver913_ours_mobile_kl_only_bts', 'ver915_ours_mobile_SSIM_only_bts'].join(',');
-        targets = targets.split(/[,.]/gi);
+        targets = targets.split(/[,*]/gi);
         let index = parseInt(params.get('index')) || 0;
         let indexes = params.get('indexes') || '';
-        indexes = indexes.split(/[,.]/gi).filter(e => e).map(e => parseInt(e));
+        indexes = indexes.split(/[,*]/gi).filter(e => e).map(e => parseInt(e));
         if (indexes.length > 0) {
             if (!indexes.find(e => e === index)) {
                 index = indexes[0];
