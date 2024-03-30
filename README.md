@@ -79,4 +79,4 @@ We provide a viewer that can simultaneously check the results of different metho
 This repo benefits from [Monocular-Depth-Estimation-Toolbox](https://github.com/zhyever/Monocular-Depth-Estimation-Toolbox/). Please also consider citing them.
 
 ### Special thanks
-[@refracta](https://github.com/refracta) - Developing a viewer to check the results
+[@refracta](https://github.com/refracta) - Developing a viewer to check the results, Qualitative and quantitative comparison of data for data selection
