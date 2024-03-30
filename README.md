@@ -66,6 +66,17 @@ We provide [train.md](docs/train.md) [(html)](docs/train.html) and [inference.md
 | Depthformer | TIE-KD | L_DPM, L_DEPTH | ResNet18   |  24   | 0.0624 | 2.3963 |  [config](configs/students/ours_r18_depthformer.py) | [model](https://drive.google.com/file/d/10cARevwL0h3Way9FdJTr7WkPzvopdGVX/view?usp=sharing)
 | Depthformer | TIE-KD | L_DPM, L_DEPTH | ResNet50   |  24   | 0.0586 | 2.2821 |  [config](configs/students/ours_r50_depthformer.py) | [model](https://drive.google.com/file/d/1ENzaTxa1ieOy5t6-MMDmVaYbGGEgzApY/view?usp=sharing)
 
-## Acknowledgement
+## Viewer
+We provide a viewer that can simultaneously check the results of different methods for three models(AdaBins, BTS, Depthformer).
+- Move between images with '←' and '→' keys
+- Display diff of other images for that image with 1, 2, 3, 4, 5, 6, 7, 8, 9 numeric keys (press the same button again to toggle back)
 
+*[AdaBins](https://hpc-lab-koreatech.github.io/TIE-KD?targets=Teacher_adabins*ver919_kitti_adabins_cal_range_w0.1_beta_4*ver650_KD_SSIM*ver652_res-kd_mobile_mse_adabins*ver651_res-kd_mobile_SI_adabins*ver659_KD_SSIM_SIG*ver912_res-kd_mobile_SSIM_mse_adabins)
+*[BTS](https://hpc-lab-koreatech.github.io/TIE-KD?targets=Teacher_bts*ver926_ours_bts_*ver650_KD_SSIM_bts*ver652_res-kd_mobile_mse_bts*ver651_res-kd_mobile_SI_bts*ver659_KD_SSIM_SIG_bts*ver912_res-kd_mobile_SSIM_mse_bts)
+*[Depthformer](https://hpc-lab-koreatech.github.io/TIE-KD?targets=Teacher_depthformer*ver919_kitti_depthformer_cal_range_w0.1_beta_4*ver650_KD_SSIM_depthformer*ver652_res-kd_mobile_mse_depthformer*ver651_res-kd_mobile_SI_depthformer*ver659_KD_SSIM_SIG_depthformer*ver912_res-kd_mobile_SSIM_mse_depthformer)
+
+## Acknowledgement
 This repo benefits from [Monocular-Depth-Estimation-Toolbox](https://github.com/zhyever/Monocular-Depth-Estimation-Toolbox/). Please also consider citing them.
+
+### Special thanks
+[@refracta](https://github.com/refracta) - Developing a viewer to check the results
