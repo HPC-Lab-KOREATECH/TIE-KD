@@ -67,7 +67,7 @@ We provide [train.md](docs/train.md) [(html)](docs/train.html) and [inference.md
 | Depthformer | TIE-KD | L_DPM, L_DEPTH | ResNet50   |  24   | 0.0586 | 2.2821 |  [config](configs/students/ours_r50_depthformer.py) | [model](https://drive.google.com/file/d/1ENzaTxa1ieOy5t6-MMDmVaYbGGEgzApY/view?usp=sharing)
 
 ## Viewer
-We provide a viewer that can simultaneously check the results of different methods for three models(AdaBins, BTS, Depthformer).
+We provide a viewer that can simultaneously check the results of different methods for three models.
 - Move between images with '←' and '→' keys
 - Display diff of other images for that image with 1, 2, 3, 4, 5, 6, 7, 8, 9 numeric keys (press the same button again to toggle back)
 
