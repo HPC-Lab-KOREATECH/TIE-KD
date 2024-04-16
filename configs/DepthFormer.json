@@ -3,8 +3,8 @@
     "targets": [
         {
             "label": "Teacher DepthFormer",
-            "labelColor": "eeeeee",
-            "labelBackgroundColor": "eb4034",
+            "labelColor": "808080",
+            "labelBackgroundColor": "eeeeee",
             "path": "results/Teacher_depthformer"
         },
         {
