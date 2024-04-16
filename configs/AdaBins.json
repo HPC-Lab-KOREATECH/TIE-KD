@@ -3,8 +3,8 @@
   "targets": [
     {
       "label": "Teacher AdaBins",
-      "labelColor": "eb4034",
-      "labelBackgroundColor": "eeeeee",
+      "labelColor": "eeeeee",
+      "labelBackgroundColor": "eb4034",
       "path": "results/Teacher_adabins"
     },
     {
@@ -15,20 +15,21 @@
     },
     {
       "label": "Baseline",
+      "groundTruth": true,
       "labelColor": "black",
       "labelBackgroundColor": "f0f0f0",
       "path": "results/ver925_base_up7"
     },
     {
       "label": "Res-KD (SSIM)",
-      "labelColor": "red",
-      "labelBackgroundColor": "white",
+      "labelColor": "white",
+      "labelBackgroundColor": "red",
       "path": "results/ver650_KD_SSIM"
     },
     {
       "label": "Res-KD (MSE)",
-      "labelColor": "purple",
-      "labelBackgroundColor": "white",
+      "labelColor": "white",
+      "labelBackgroundColor": "purple",
       "path": "results/ver652_res-kd_mobile_mse_adabins"
     },
     {
