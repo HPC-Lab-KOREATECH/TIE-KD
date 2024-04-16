@@ -1,6 +1,3 @@
-[submodule "super-resolution-viewer"]
-	path = super-resolution-viewer
-	url = https://github.com/refracta/super-resolution-viewer
 [submodule "viewer"]
 	path = viewer
 	url = https://github.com/refracta/super-resolution-viewer
