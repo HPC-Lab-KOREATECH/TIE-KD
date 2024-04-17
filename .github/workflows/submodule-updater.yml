@@ -1,0 +1,31 @@
+name: submodule-updater
+
+on:
+  push:
+    branches:
+      - gh-pages
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Update submodule
+        run: |
+          git submodule init
+          git submodule update --remote --recursive
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'Submodule Updater'
+          git config --global user.email 'submodule-updater@users.noreply.github.com'
+          git add .
+          git commit -m 'Update submodule' || echo "No changes to commit"
+          git push origin
