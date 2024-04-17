@@ -71,9 +71,9 @@ We provide a viewer that can simultaneously check the results of different metho
 - Move between images with '←' and '→' keys
 - Display diff of other images for that image with 1, 2, 3, 4, 5, 6, 7, 8, 9 numeric keys (press the same button again to toggle back)
 
-|[AdaBins](https://hpc-lab-koreatech.github.io/TIE-KD/viewer/?configPath=..%2Fconfigs%2FAdaBins.json&pageZoom=0.6&preloadSize=8)|
-|[BTS](https://hpc-lab-koreatech.github.io/TIE-KD/viewer/?configPath=..%2Fconfigs%2FDepthFormer.json&pageZoom=0.6&preloadSize=8)|
-|[Depthformer](https://hpc-lab-koreatech.github.io/TIE-KD/viewer/?configPath=..%2Fconfigs%2FBTS.json&pageZoom=0.6&preloadSize=8)|
+|[AdaBins](https://hpc-lab-koreatech.github.io/TIE-KD/viewer/?configPath=/configs/AdaBins.json&pageZoom=0.6&preloadSize=8)|
+|[BTS](https://hpc-lab-koreatech.github.io/TIE-KD/viewer/?configPath=/configs/BTS.json&pageZoom=0.6&preloadSize=8)|
+|[Depthformer](https://hpc-lab-koreatech.github.io/TIE-KD/viewer/?configPath=/configs/DepthFormer.json&pageZoom=0.6&preloadSize=8)|
 
 ## Acknowledgement
 This repo benefits from [Monocular-Depth-Estimation-Toolbox](https://github.com/zhyever/Monocular-Depth-Estimation-Toolbox/). Please also consider citing them.
