@@ -5,50 +5,50 @@
             "label": "Teacher BTS",
             "labelColor": "808080",
             "labelBackgroundColor": "eeeeee",
-            "path": "results/Teacher_bts"
+            "path": "/results/Teacher_bts"
         },
         {
             "label": "TIE-KD",
             "labelColor": "white",
             "labelBackgroundColor": "blue",
-            "path": "results/ver926_ours_bts_"
+            "path": "/results/ver926_ours_bts_"
         },
         {
             "label": "Baseline",
             "groundTruth": true,
             "labelColor": "black",
             "labelBackgroundColor": "f0f0f0",
-            "path": "results/ver925_base_up7"
+            "path": "/results/ver925_base_up7"
         },
         {
             "label": "Res-KD (SSIM)",
             "labelColor": "white",
             "labelBackgroundColor": "red",
-            "path": "results/ver650_KD_SSIM_bts"
+            "path": "/results/ver650_KD_SSIM_bts"
         },
         {
             "label": "Res-KD (MSE)",
             "labelColor": "white",
             "labelBackgroundColor": "purple",
-            "path": "results/ver652_res-kd_mobile_mse_bts"
+            "path": "/results/ver652_res-kd_mobile_mse_bts"
         },
         {
             "label": "Res-KD (SI)",
             "labelColor": "black",
             "labelBackgroundColor": "lightgrey",
-            "path": "results/ver651_res-kd_mobile_SI_bts"
+            "path": "/results/ver651_res-kd_mobile_SI_bts"
         },
         {
             "label": "Res-KD (SSIM, SI)",
             "labelColor": "black",
             "labelBackgroundColor": "lightcoral",
-            "path": "results/ver659_KD_SSIM_SIG_bts"
+            "path": "/results/ver659_KD_SSIM_SIG_bts"
         },
         {
             "label": "Res-KD (SSIM, MSE)",
             "labelColor": "black",
             "labelBackgroundColor": "thistle",
-            "path": "results/ver912_res-kd_mobile_SSIM_mse_bts"
+            "path": "/results/ver912_res-kd_mobile_SSIM_mse_bts"
         }
     ]
 }
