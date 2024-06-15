@@ -21,9 +21,9 @@ We provide [train.md](docs/train.md) [(html)](docs/train.html) and [inference.md
 
 | Model | Backbone | Train Epoch | Abs Rel | RMSE | Config | Download |
 | :------: | :--------: | :----: | :--------------: | :------: | :------: | :--------: |
-| Adabins  |  EfficientNetB5-AP  |  24   | 0.0593 | 2.3309 |  [config](configs/teachers/adabins_efnetb5ap_kitti_24e.py) |  [model](https://koreatechackr-my.sharepoint.com/:u:/r/personal/bluekds_koreatech_ac_kr/Documents/Paper/TIE-KD/Teacher/adabins_efnetb5_kitti_2.33.pth?csf=1&web=1&e=I6a8hJ)
-| BTS  |  ResNet-50  |  24   | 0.0586 | 2.4798 |  [config](configs/teachers/bts_r50_kitti_24e_b4.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/r/personal/bluekds_koreatech_ac_kr/Documents/Paper/TIE-KD/Teacher/bts_r50_kitti.pth?csf=1&web=1&e=gzgYcc)
-| Depthformer | SwinL-w7-22k   |  24   | 0.0513 | 2.1038 |  [config](configs/teachers/depthformer_swinl_22k_w7_kitti.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/r/personal/bluekds_koreatech_ac_kr/Documents/Paper/TIE-KD/Teacher/depthformer_swinl_w7_22k_kitti-004.pth?csf=1&web=1&e=f4AGr8)
+| Adabins  |  EfficientNetB5-AP  |  24   | 0.0593 | 2.3309 |  [config](configs/teachers/adabins_efnetb5ap_kitti_24e.py) |  [model](https://drive.google.com/file/d/17srI3mFoYLdnN1As4a2fRGrHA0UHuujX/view?usp=sharing)
+| BTS  |  ResNet-50  |  24   | 0.0586 | 2.4798 |  [config](configs/teachers/bts_r50_kitti_24e_b4.py) | [model](https://drive.google.com/file/d/1VBSYwoyquYAR3sP6sg0qyhaZhC0BKj2v/view?usp=sharing)
+| Depthformer | SwinL-w7-22k   |  24   | 0.0513 | 2.1038 |  [config](configs/teachers/depthformer_swinl_22k_w7_kitti.py) | [model](https://drive.google.com/file/d/1wFcF8G8x3WwDj9owJ5G47NrUIg--BTKJ/view?usp=sharing)
 
 ### Students
 
