@@ -21,9 +21,9 @@ We provide [train.md](docs/train.md) [(html)](docs/train.html) and [inference.md
 
 | Model | Backbone | Train Epoch | Abs Rel | RMSE | Config | Download |
 | :------: | :--------: | :----: | :--------------: | :------: | :------: | :--------: |
-| Adabins  |  EfficientNetB5-AP  |  24   | 0.0593 | 2.3309 |  [config](configs/teachers/adabins_efnetb5ap_kitti_24e.py) |  [model](https://drive.google.com/file/d/17srI3mFoYLdnN1As4a2fRGrHA0UHuujX/view?usp=sharing)
-| BTS  |  ResNet-50  |  24   | 0.0586 | 2.4798 |  [config](configs/teachers/bts_r50_kitti_24e_b4.py) | [model](https://drive.google.com/file/d/1VBSYwoyquYAR3sP6sg0qyhaZhC0BKj2v/view?usp=sharing)
-| Depthformer | SwinL-w7-22k   |  24   | 0.0513 | 2.1038 |  [config](configs/teachers/depthformer_swinl_22k_w7_kitti.py) | [model](https://drive.google.com/file/d/1wFcF8G8x3WwDj9owJ5G47NrUIg--BTKJ/view?usp=sharing)
+| Adabins  |  EfficientNetB5-AP  |  24   | 0.0593 | 2.3309 |  [config](configs/teachers/adabins_efnetb5ap_kitti_24e.py) |  [model]([https://drive.google.com/file/d/17srI3mFoYLdnN1As4a2fRGrHA0UHuujX/view?usp=sharing](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/Ecb81qU-z39AvaUeN-Up1kcBrWYcowajq83eZAlobCcxNg?e=klJ65F))
+| BTS  |  ResNet-50  |  24   | 0.0586 | 2.4798 |  [config](configs/teachers/bts_r50_kitti_24e_b4.py) | [model]([https://drive.google.com/file/d/1VBSYwoyquYAR3sP6sg0qyhaZhC0BKj2v/view?usp=sharing](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EXkshDfzK1BPqpLSIX4LgtoBusnW1t4HfyP6yUZsPsw4fQ?e=lftblO))
+| Depthformer | SwinL-w7-22k   |  24   | 0.0513 | 2.1038 |  [config](configs/teachers/depthformer_swinl_22k_w7_kitti.py) | [model]([https://drive.google.com/file/d/1wFcF8G8x3WwDj9owJ5G47NrUIg--BTKJ/view?usp=sharing](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EQ2uVeyE5nBMp0HxQ8qhBMwBGUdXnjK4bdU2P7cBb6VJBA?e=r1CWgY))
 
 ### Students
 
