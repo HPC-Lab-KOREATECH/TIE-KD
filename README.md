@@ -15,7 +15,7 @@ We provide [train.md](docs/train.md) [(html)](docs/train.html) and [inference.md
 
 <!-- In the future, there will be tutorials for [customizing dataset (TODO)](docs/tutorials/customize_datasets.md), [designing data pipeline (TODO)](docs/tutorials/data_pipeline.md), [customizing modules (TODO)](docs/tutorials/customize_models.md), and [customizing runtime (TODO)](docs/tutorials/customize_runtime.md). We also provide [training tricks (TODO)](docs/tutorials/training_tricks.md). -->
 
-## Results and models
+## Results and models for KITTI
 
 ### Teachers
 | Model | Backbone | Train Epoch | Abs Rel | RMSE | Config | Download |
@@ -66,6 +66,9 @@ We provide [train.md](docs/train.md) [(html)](docs/train.html) and [inference.md
 | BTS | TIE-KD | L_DPM, L_DEPTH | ResNet50   |  24   | 0.0615 | 2.4019 |  [config](configs/students/ours_r50_bts.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/ETV21K5bhqJBjdFnFJJv0r0BcPFuWQxZIZ-NHZpnYgTnMA?e=eOt7za)
 | Depthformer | TIE-KD | L_DPM, L_DEPTH | ResNet18   |  24   | 0.0624 | 2.3963 |  [config](configs/students/ours_r18_depthformer.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EY6q05u-JHlGsfFv4YksyykB8-mWwbFKECw7CbdAR0jlug?e=b96bbO)
 | Depthformer | TIE-KD | L_DPM, L_DEPTH | ResNet50   |  24   | 0.0586 | 2.2821 |  [config](configs/students/ours_r50_depthformer.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EQg4v3Uj4BVHrReq_2QK19wBYIN4XR9pumuHTsct6bFqwg?e=NFYb7a)
+
+## Results and models for NYU
+
 
 ## Viewer
 We provide a viewer that can simultaneously check the results of different methods for three models.
