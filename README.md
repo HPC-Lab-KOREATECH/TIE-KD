@@ -1,4 +1,7 @@
 # TIE-KD
+
+![overview](./overview.png)
+
 ## Introduction
 Monocular depth estimation (MDE) is essential for numerous applications yet is impeded by the substantial computational demands of accurate deep learning models. To mitigate this, we introduce a novel Teacher-Independent Explainable Knowledge Distillation (TIE-KD) framework that streamlines the knowledge transfer from complex teacher models to compact student networks, eliminating the need for architectural similarity. The cornerstone of TIE-KD is the Depth Probability Map (DPM), an explainable feature map that interprets the teacher's output, enabling feature-based knowledge distillation solely from the teacher's response. This approach allows for efficient student learning, leveraging the strengths of feature-based distillation. Extensive evaluation of the KITTI dataset indicates that TIE-KD not only outperforms conventional response-based KD methods but also demonstrates consistent efficacy across diverse teacher and student architectures. The robustness and adaptability of TIE-KD underscore its potential for applications requiring efficient and interpretable models, affirming its practicality for real-world deployment.
 
