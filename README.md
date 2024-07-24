@@ -1,9 +1,10 @@
 # TIE-KD
 ## Introduction
-we introduce a novel Teacher-Independent Explainable Knowledge Distillation (TIE-KD) framework that streamlines the knowledge transfer from complex teacher models to compact student networks, eliminating the need for architectural similarity
+Monocular depth estimation (MDE) is essential for numerous applications yet is impeded by the substantial computational demands of accurate deep learning models. To mitigate this, we introduce a novel Teacher-Independent Explainable Knowledge Distillation (TIE-KD) framework that streamlines the knowledge transfer from complex teacher models to compact student networks, eliminating the need for architectural similarity. The cornerstone of TIE-KD is the Depth Probability Map (DPM), an explainable feature map that interprets the teacher's output, enabling feature-based knowledge distillation solely from the teacher's response. This approach allows for efficient student learning, leveraging the strengths of feature-based distillation. Extensive evaluation of the KITTI dataset indicates that TIE-KD not only outperforms conventional response-based KD methods but also demonstrates consistent efficacy across diverse teacher and student architectures. The robustness and adaptability of TIE-KD underscore its potential for applications requiring efficient and interpretable models, affirming its practicality for real-world deployment.
 
 ## Related paper
-[TIE-KD: Teacher-Independent and Explainable Knowledge Distillation for Monocular Depth Estimation](https://arxiv.org/abs/2402.14340)
+TIE-KD: Teacher-Independent and Explainable Knowledge Distillation for Monocular Depth Estimation [[Published Ver.](https://www.sciencedirect.com/science/article/pii/S0262885624002142)][[preprint(arxiv)](https://arxiv.org/abs/2402.14340)]
+- [bibtex](https://drive.google.com/file/d/1vhyTBaOTzb2x2UQ64s1OTNPH9ZcnDnA-/view?usp=sharing)
 
 ## Installation
 
@@ -69,6 +70,7 @@ We provide [train.md](docs/train.md) [(html)](docs/train.html) and [inference.md
 
 ## Results and models for NYU
 
+On updating..
 
 ## Viewer
 We provide a viewer that can simultaneously check the results of different methods for three models.
