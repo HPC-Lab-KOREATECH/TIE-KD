@@ -86,8 +86,8 @@ We provide [train.md](docs/train.md) [(html)](docs/train.html) and [inference.md
 
 | Teacher | Method | Loss | Backbone | Train Epoch | Abs Rel | RMSE | Config | Download |
 | :------: | :------: | ------ | :--------: | :----: | :--------------: | :------: |  :------: | :--------: |
-| - | Baseline | SI | MobileNetV2   |  24   | 0.1661 | 0.5578 |  [config](configs/students/baseline_mobile2_NYU.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EY4gdSIOGdtLnN98e2r8a2cBOMeXJyu_HJY_2wxIHImQFg?e=qWKBC0)
-| - | Baseline | SI | ResNet18   |  24   | 0.1454 | 0.4907 |  [config](configs/students/baseline_r18_NYU.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EQ0nNra34a1MqvlcRJasGC8BWroPL2RwGjNCchJQ0TLlrA?e=eVe8HL)
+| - | Baseline | SI | MobileNetV2   |  24   | 0.1732 | 0.5576 |  [config](configs/students/baseline_mobile2_NYU.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EY4gdSIOGdtLnN98e2r8a2cBOMeXJyu_HJY_2wxIHImQFg?e=qWKBC0)
+| - | Baseline | SI | ResNet18   |  24   | 0.1523 | 0.4905 |  [config](configs/students/baseline_r18_NYU.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EQ0nNra34a1MqvlcRJasGC8BWroPL2RwGjNCchJQ0TLlrA?e=eVe8HL)
 | - | Baseline | SI | ResNet50   |  24   | 0.1445 | 0.4810 |  [config](configs/students/baseline_r50_NYU.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EdkdTnIjCwNOnMpkPE0hGIABQbgH4m0gaUL8vjQWt4XhKQ?e=YEcf30)
 | Adabins | Res-KD | SSIM | MobileNetV2   |  24   | 0.1849 | 0.5867 |  [config](configs/students/Res-KD_adabins_SSIM_NYU.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EfpDYdfXiPNEuAdoLHuQsbUB5mUklPqmW0D_UdrFDk4_kQ?e=BHZZ1V)
 | Adabins | Res-KD | MSE | MobileNetV2   |  24   | 0.1843 | 0.5760 |  [config](configs/students/Res-KD_adabins_MSE_NYU.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/Edlg2_qmRo1LjFBCIHbCeMoBFdOIV4crQbznlrd61SkN0w?e=VEU74f)
