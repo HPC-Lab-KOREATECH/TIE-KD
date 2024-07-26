@@ -76,8 +76,8 @@ We provide [train.md](docs/train.md) [(html)](docs/train.html) and [inference.md
 ### Teachers
 | Model | Backbone | Train Epoch | Abs Rel | RMSE | Config | Download |
 | :------: | :--------: | :----: | :--------------: | :------: | :------: | :--------: |
-| Adabins  |  EfficientNetB5-AP  |  24   | 0.106 | 0.368 |  [config](configs/teachers/adabins_efnetb5ap_nyu_24e.py) |  [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EXnhhPX5xo1MmGMKXE4sS7sB1c8zHk99BtyU0Gj7r0OD1w?e=Yhgg2i)
-| BTS  |  ResNet-50  |  24   | 0.114 | 0.41 |  [config](configs/teachers/bts_r50_nyu_24e.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EdqTm31tvT9PksRX-I1FtbYBzAWdRjby_b8gQIkj17IGkw?e=inWZPF)
+| Adabins  |  EfficientNetB5-AP  |  24   | 0.106 | 0.368 |  [config](configs/teachers/adabins_efnetb5ap_nyu_24e.py) |  [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/ERoNYzVegBtHho1K2r_3nAgBzlIM1zfviNaHIU0vkLKI_g?e=vhZ4Dv)
+| BTS  |  ResNet-50  |  24   | 0.114 | 0.41 |  [config](configs/teachers/bts_r50_nyu_24e.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/ESL4vnjBQWVMoC6N7xTsgckBdHb3nGgH8wJYCx6tReNLmQ?e=UYeP74)
 | Depthformer | SwinL-w7-22k   |  24   | 0.094 | 0.33 |  [config](configs/teachers/depthformer_swinl_22k_w7_nyu.py) | [model](https://koreatechackr-my.sharepoint.com/:u:/g/personal/bluekds_koreatech_ac_kr/EX1sw8lq_z1LmwslST6NG7UB-8333LpAsJzE2nbW6_jsJA?e=vTr6Ik)
 
 
