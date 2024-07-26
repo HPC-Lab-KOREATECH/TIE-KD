@@ -57,23 +57,22 @@ class L_DPM_loss(nn.Module):
     def forward(self, depth_pred, kd_gt, bin_edges, out):    
         ##################
         B,_,H,W = kd_gt.shape        
-        C = self.n_bins_-1
-        kd_gt = torchvision.transforms.functional.crop(kd_gt,110,0,H,W)
-        depth_pred = torchvision.transforms.functional.crop(depth_pred,110,0,H,W)
-        out = torchvision.transforms.functional.crop(out,110,0,H,W)
+        C = self.n_bins_-1        
+        if depth_pred.shape[3] == 704: #KITTI   
+            kd_gt = torchvision.transforms.functional.crop(kd_gt,110,0,H,W)
+            depth_pred = torchvision.transforms.functional.crop(depth_pred,110,0,H,W)
+            out = torchvision.transforms.functional.crop(out,110,0,H,W)        
+            B,_,H,W = kd_gt.shape 
         ##################
-        B,_,H,W = kd_gt.shape 
 
         centers_tensor = 0.5 * (bin_edges[:-1] + bin_edges[1:]).contiguous().view(1,C, 1, 1)  
-        centers_tensor = centers_tensor.repeat(B,1,H,W)
-        
+        centers_tensor = centers_tensor.repeat(B,1,H,W)        
 
         probability_T_kd = ( 1 / (torch.sqrt(self.PI * self.sigma**2)) * torch.exp(torch.negative(torch.pow(centers_tensor - kd_gt, 2) / (2 * torch.pow(self.sigma, 2)))))
 
         gaussian_softmax = torch.where(probability_T_kd<self.num_min,-self.num_1000_float,probability_T_kd)
 
         gaussian_softmax = self.softmax(gaussian_softmax)
-
 
         kl_loss_kd = torch.sum(torch.where(out!=self.num_zero_float,gaussian_softmax * torch.log(gaussian_softmax/(out+self.eps)+self.eps),self.num_zero_float),dim=1,keepdim=True)
 

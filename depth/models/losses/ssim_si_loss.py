@@ -57,7 +57,8 @@ class SSIM_SI_loss(nn.Module):
         return torch.sqrt(Dg)
 
     def forward(self, depth_pred, kd_gt):
-        """Forward function."""        
+        """Forward function."""    
+            
         loss_depth = self.sigloss(depth_pred, kd_gt)
         SSIM_loss_value = self.loss_weight*(1-self.SSIM_loss(depth_pred, kd_gt))
 

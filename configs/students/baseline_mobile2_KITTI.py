@@ -16,5 +16,4 @@ model = dict(
         ),
     )
 
-# max_lr=0.000357
 find_unused_parameters=True

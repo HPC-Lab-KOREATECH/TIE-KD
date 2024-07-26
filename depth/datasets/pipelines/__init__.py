@@ -5,11 +5,11 @@ from .formating import (Collect, ImageToTensor, ToDataContainer, ToTensor,
 from .test_time_aug import MultiScaleFlipAug
 
 from .loading import DepthLoadAnnotations, DisparityLoadAnnotations, LoadImageFromFile, LoadKITTICamIntrinsic, KDLoadAnnotations, KDLoadAnnotations_NYU
-# from .transforms_kd import KBCrop_kd, RandomRotate_kd, RandomFlip_kd, RandomCrop_kd, NYUCrop_kd, Resize_kd, Normalize_kd
 
-# from .transforms_base import KBCrop, RandomRotate, RandomFlip, RandomCrop, NYUCrop, Resize, Normalize
-# from .transforms_kd import KBCrop, RandomRotate, RandomFlip, RandomCrop, NYUCrop, Resize, Normalize
+from .transforms_base import KBCrop_Base, RandomRotate_Base, RandomFlip_Base, RandomCrop_Base, NYUCrop_Base, Resize_Base, Normalize_Base
 from .transforms_kd2 import KBCrop, RandomRotate, RandomFlip, RandomCrop, NYUCrop, Resize, Normalize
+
+
 
 
 
@@ -20,6 +20,6 @@ __all__ = [
     'Transpose', 'to_tensor', 'MultiScaleFlipAug',
 
     'DepthLoadAnnotations', 'KBCrop', 'RandomRotate', 'RandomFlip', 'RandomCrop', 'DefaultFormatBundle',
-    'NYUCrop', 'DisparityLoadAnnotations', 'Resize', 'LoadImageFromFile', 'Normalize', 'LoadKITTICamIntrinsic', 'KDLoadAnnotations'
+    'NYUCrop', 'DisparityLoadAnnotations', 'Resize', 'LoadImageFromFile', 'Normalize', 'LoadKITTICamIntrinsic', 'KDLoadAnnotations', 'KBCrop_Base', 'RandomRotate_Base', 'RandomFlip_Base', 'RandomCrop_Base', 'NYUCrop_Base', 'Resize_Base', 'Normalize_Base'
     # 'KBCrop_kd', 'RandomRotate_kd', 'RandomFlip_kd', 'RandomCrop_kd', 'NYUCrop_kd', 'Resize_kd', 'Normalize_kd'
 ]

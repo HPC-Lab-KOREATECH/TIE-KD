@@ -120,42 +120,13 @@ class KBCrop(object):
         Returns:
             dict: Croped results.
         """
-        # print("KBCrop")
-        # print(results["kd_gt"].shape)
-        # print(results["depth_gt"].shape)
-        
-        
-        ####
-    
+  
 
         height = results["img_shape"][0]
         width = results["img_shape"][1]
         
         top_margin = int(height - self.height)
         left_margin = int((width - self.width) / 2)
-
-        # if self.depth:
-        #     kd_shape =results["kd_gt"].shape
-        #     kd_height = kd_shape[1]
-        #     kd_width = kd_shape[2]
-        #     kd_top_margin = int(kd_height - self.height)
-        #     kd_left_margin = int((kd_width - self.width) / 2)
-        
-        # print(results["img_shape"])
-        # print(top_margin)
-        # print(left_margin)
-        # print(results["kd_gt"].shape)
-        # print(kd_top_margin)
-        # print(kd_left_margin)
-        # print("========================")
-        
-
-        # print(top_margin)
-
-        # print(results["depth_gt"].shape)
-        # print(results["kd_gt"].shape)
-        # print(results["img"].shape)
-        # print("=======================")
 
 
         if self.depth:
@@ -165,24 +136,6 @@ class KBCrop(object):
                                                 self.width]
             results["depth_gt"] = depth_cropped
             results["depth_shape"] = results["depth_gt"].shape
-
-
-            # print("@@@@@@@@@@@@@@")
-            # print(depth_cropped.shape)
-            # print("@@@@@@@@@@@@@@")
-
-            ##kd_crop
-            # results["kd_gt"] = results["kd_gt"].squeeze()        
-            # depth_cropped2 = results["kd_gt"][kd_top_margin:kd_top_margin +
-            #                                     self.height,
-            #                                     kd_left_margin:kd_left_margin +
-            #                                     self.width]
-            # results["kd_gt"] = depth_cropped2
-            # results["kd_gt"] = np.expand_dims(results["kd_gt"],axis=0)
-            
-            # print("@@@@@@@@@@@@@@")
-            # print(depth_cropped2.shape)
-            # print("@@@@@@@@@@@@@@")
 
 
             
@@ -250,21 +203,13 @@ class RandomRotate(object):
         """
 
         rotate = True if np.random.rand() < self.prob else False
-        # rotate = False
         degree = np.random.uniform(min(*self.degree), max(*self.degree))
         if rotate:            
-            # rotate image
             results['img'] = mmcv.imrotate(results['img'],
                                            angle=degree,
                                            border_value=self.pal_val,
                                            center=self.center,
                                            auto_bound=self.auto_bound)
-            # print("RandomRotate")
-            # print(results['depth_gt'].shape)
-            # print(results['kd_gt'].shape)
-
-            ###!
-            # results['kd_gt'] = results['kd_gt'].squeeze()
             
             # rotate depth
             for key in results.get('depth_fields', []):
@@ -275,17 +220,7 @@ class RandomRotate(object):
                     center=self.center,
                     auto_bound=self.auto_bound,
                     interpolation='nearest')
-            
-                # rotate kd
-                # results['kd_gt'] = mmcv.imrotate(
-                #         results['kd_gt'],
-                #         angle=degree,
-                #         border_value=self.depth_pad_val,
-                #         center=self.center,
-                #         auto_bound=self.auto_bound,
-                #         interpolation='nearest')
-                ###!
-                # results['kd_gt'] = np.expand_dims(results['kd_gt'],axis=0)
+        
 
         return results
 
@@ -344,65 +279,16 @@ class RandomFlip(object):
             results['img'] = mmcv.imflip(results['img'],
                                          direction=results['flip_direction'])
 
-            # flip depth
-            # print(results.keys())
-            # sys.exit()
-            # print("next")
-
-            # kd_gt_copy = results['kd_gt']/80*255        
-            # kd_gt_copy=kd_gt_copy
-            # kd_gt_copy=kd_gt_copy.squeeze()
-            # kd_gt_copy = kd_gt_copy.astype('uint8')
-            # kd_img = Image.fromarray(kd_gt_copy)
-            # kd_img.save('kd_gt_before.png')
             
             for key in results.get('depth_fields', []):                
                 # use copy() to make numpy stride positive
                 results[key] = mmcv.imflip(
                     results[key], direction=results['flip_direction']).copy()
-                # results['kd_gt'] = mmcv.imflip(
-                #         results['kd_gt'], direction="vertical").copy()                
-                # print('depth_gt')
-                # sys.exit()
+
                 results['kd_gt'] = mmcv.imflip(
                     results['kd_gt'], direction=results['flip_direction']).copy()
-                # print(results['flip_direction'])                
-                # print(key)
-                # print(results[key].shape)
-                # print(results['kd_gt'].shape)
-                # sys.exit()
 
-        # kd_gt_copy = results['kd_gt']/80*255        
-        # kd_gt_copy=kd_gt_copy
-        # kd_gt_copy=kd_gt_copy.squeeze()
-        # kd_gt_copy = kd_gt_copy.astype('uint8')
-        # kd_img = Image.fromarray(kd_gt_copy)
-        # kd_img.save('kd_gt0.png')
-        # # kd_img = Image.fromarray(kd_gt_copy[1])
-        # # kd_img.save('kd_gt1.png')
 
-        # depth_pred_copy = results['img']/80*255
-        # depth_pred_copy=depth_pred_copy
-        # depth_pred_copy=depth_pred_copy.squeeze()
-        # depth_pred_copy = depth_pred_copy.astype('uint8')
-        # depth_pred_copy = Image.fromarray(depth_pred_copy)
-        # depth_pred_copy.save('depth_pred0.png')
-        
-        # kd_img = Image.fromarray(depth_pred[1])
-        # kd_img.save('depth_pred1.png')
-
-            # flip kd
-            # for key in results.get('depth_fields', []):
-            #     results['kd_gt'] = mmcv.imflip(
-            #             results['kd_gt'], direction=results['flip_direction']).copy()
-            #     break
-
-            # kd_gt_copy2 = results['kd_gt']/80*255        
-            # kd_gt_copy2=kd_gt_copy2
-            # kd_gt_copy2=kd_gt_copy2.squeeze()
-            # kd_gt_copy2 = kd_gt_copy2.astype('uint8')
-            # kd_img2 = Image.fromarray(kd_gt_copy2)
-            # kd_img2.save('kd_gt_after.png')
         return results
 
     def __repr__(self):

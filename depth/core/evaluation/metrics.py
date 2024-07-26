@@ -49,9 +49,7 @@ def bin_feature_fn(input, bin_edge):
 
 # def calculate(gt, pred):
 def calculate(kd_gt, pred_base, gt, pred):
-    # print("calculate@!@@@@")
-    # print(pred_base.shape)
-    # sys.exit()
+
     if gt.shape[0] == 0:
         return np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan
 
@@ -62,11 +60,6 @@ def calculate(kd_gt, pred_base, gt, pred):
 
     abs_rel = np.mean(np.abs(gt - pred) / gt)
     sq_rel = np.mean(((gt - pred) ** 2) / gt)
-
-    # print(kd_gt[:][101:].shape)
-    # print(gt[:][101:].shape)
-    # print(pred_base[:][101:].shape)
-    # sys.exit()
 
     rmse = (gt - pred) ** 2
     rmse = np.sqrt(rmse.mean())
@@ -238,12 +231,6 @@ def calculate(kd_gt, pred_base, gt, pred):
 
 def metrics(kd, pred_raw, gt, pred, min_depth=1e-3, max_depth=80):
 # def metrics(gt, pred, min_depth=1e-3, max_depth=80):
-    # print(pred_raw.shape)
-    # print("hihihihihi")
-    # print(np.max(kd))
-    # print(np.max(pred_raw))
-    # print("@@@@@@@@@@@@")
-
     mask_1 = gt > min_depth
     mask_2 = gt < max_depth
     mask = np.logical_and(mask_1, mask_2)
@@ -294,7 +281,7 @@ def eval_metrics(kd_gt, gt, pred, min_depth=1e-3, max_depth=80):
     log_10 = (np.abs(np.log10(gt) - np.log10(pred))).mean()    
 
 
-    if(kd_gt.shape[1]!=480):
+    if(kd_gt.shape[1]!=480): #KITTI
         rmse_T = (kd_gt[:, 110: ,:] - pred[:, 110: ,:]) ** 2
         rmse_T = np.sqrt(rmse_T.mean())
 
@@ -307,7 +294,7 @@ def eval_metrics(kd_gt, gt, pred, min_depth=1e-3, max_depth=80):
         sq_rel_T = np.mean(((kd_gt[:, 110: ,:] - pred[:, 110: ,:]) ** 2) / kd_gt[:, 110: ,:])
         rmse_log_T = (np.log(kd_gt[:, 110: ,:]) - np.log(pred[:, 110: ,:])) ** 2
         rmse_log_T = np.sqrt(rmse_log_T.mean())
-    else:
+    else: #NYU
         rmse_T = (kd_gt - pred) ** 2
         rmse_T = np.sqrt(rmse_T.mean())
         

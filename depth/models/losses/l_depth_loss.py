@@ -34,12 +34,15 @@ class L_DEPTH_loss(nn.Module):
 
     def forward(self, depth_pred, kd_gt, bin_edges, out):    
         ##################
-        B,_,H,W = kd_gt.shape        
-        kd_gt = torchvision.transforms.functional.crop(kd_gt,110,0,H,W)
-        depth_pred = torchvision.transforms.functional.crop(depth_pred,110,0,H,W)
-        out = torchvision.transforms.functional.crop(out,110,0,H,W)
-        ##################
-        
+        if depth_pred.shape[3] == 704: #KITTI           
+            B,_,H,W = kd_gt.shape        
+            kd_gt = torchvision.transforms.functional.crop(kd_gt,110,0,H,W)
+            depth_pred = torchvision.transforms.functional.crop(depth_pred,110,0,H,W)
+            out = torchvision.transforms.functional.crop(out,110,0,H,W)
+            print("check@@@@@@@@@@@@@@@")
+        ##################        
+        sys.exit()
+
         SSIM_loss_value = (1-self.SSIM_loss(depth_pred, kd_gt))
         return SSIM_loss_value
 

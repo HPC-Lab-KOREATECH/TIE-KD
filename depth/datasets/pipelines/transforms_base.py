@@ -9,7 +9,7 @@ from mmcv.utils import deprecated_api_warning
 
 
 @PIPELINES.register_module()
-class Normalize(object):
+class Normalize_Base(object):
     """Normalize the image.
 
     Added key is "img_norm_cfg".
@@ -51,7 +51,7 @@ class Normalize(object):
 
 
 @PIPELINES.register_module()
-class NYUCrop(object):
+class NYUCrop_Base(object):
     """NYU standard krop when training monocular depth estimation on NYU dataset.
 
     Args:
@@ -86,7 +86,7 @@ class NYUCrop(object):
 
 
 @PIPELINES.register_module()
-class KBCrop(object):
+class KBCrop_Base(object):
     """KB standard krop when training monocular depth estimation on KITTI dataset.
 
     Args:
@@ -136,7 +136,7 @@ class KBCrop(object):
 
 
 @PIPELINES.register_module()
-class RandomRotate(object):
+class RandomRotate_Base(object):
     """Rotate the image & depth.
 
     Args:
@@ -218,7 +218,7 @@ class RandomRotate(object):
 
 
 @PIPELINES.register_module()
-class RandomFlip(object):
+class RandomFlip_Base(object):
     """Flip the image & depth.
 
     If the input dict contains the key "flip", then the flag will be used,
@@ -273,7 +273,7 @@ class RandomFlip(object):
 
 
 @PIPELINES.register_module()
-class RandomCrop(object):
+class RandomCrop_Base(object):
     """Random crop the image & depth.
 
     Args:
@@ -333,7 +333,7 @@ class RandomCrop(object):
 
 
 @PIPELINES.register_module()
-class ColorAug(object):
+class ColorAug_Base(object):
     """Color augmentation used in depth estimation
 
     Args:
@@ -397,7 +397,7 @@ class ColorAug(object):
 
 
 @PIPELINES.register_module()
-class Resize(object):
+class Resize_Base(object):
     """Resize images & depth.
 
     This transform resizes the input image to some scale. If the input dict

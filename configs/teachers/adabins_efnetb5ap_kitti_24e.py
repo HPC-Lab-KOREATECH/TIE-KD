@@ -1,5 +1,5 @@
 _base_ = [
-    '../_base_/models/adabins.py', '../_base_/datasets/kitti_kd_with_b8_adabins.py',
+    '../_base_/models/adabins.py', '../_base_/datasets/kitti.py',
     '../_base_/default_runtime.py', '../_base_/schedules/schedule_24x.py'
 ]
 
